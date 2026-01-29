@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Board Web Studios — Cinematic Web Experiences</title>
+  <title>Clayvonte Web Studios — Cinematic Web Experiences</title>
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* THEME COLORS */
+    /* THEME COLORS (GLOBAL TOKENS) */
     :root {
       --primary: #ffd700;
       --background: #0d0d0d;
-      --text: white;
+      --text: #ffffff;
     }
-    body.theme-bumblebee { --primary:#fce903; --background:#000; --text:#000; }
-    body.theme-blackwhite { --primary:#fff; --background:#000; --text:#fff; }
-    body.theme-redblack { --primary:#8b0000; --background:#000; --text:#fff; }
+    body {
+      background: var(--background);
+      color: var(--text);
+    }
+    body.theme-bumblebee { --primary:#fce903; --background:#000000; --text:#fce903; }
+    body.theme-blackwhite { --primary:#ffffff; --background:#000000; --text:#ffffff; }
+    body.theme-redblack { --primary:#8b0000; --background:#000000; --text:#ffffff; }
     body.theme-greenbrown { --primary:#2e4d28; --background:#1a1a1a; --text:#d2b48c; }
-    body.theme-orangewhite { --primary:#ffa500; --background:#fff; --text:#000; }
+    body.theme-orangewhite { --primary:#ffa500; --background:#ffffff; --text:#000000; }
 
     /* HERO CINEMATIC */
     .hero {
@@ -29,44 +33,30 @@
       color: var(--text);
     }
     .hero h1 { font-size: 4rem; color: var(--primary); }
-    .hero p { font-size: 1.4rem; opacity: 0.9; }
-
-    /* LOADING SCREEN SHOWCASE */
-    .loader-showcase {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding: 20px 0;
-    }
-    .loader-demo {
-      min-width: 200px;
-      height: 200px;
-      background: #111;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--primary);
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .loader-demo:hover { transform: scale(1.05); }
+    .hero p { font-size: 1.4rem; opacity: 0.9; max-width: 700px; margin: 20px auto 0; }
 
     /* LOGIN BOX */
+    .login-section {
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
     .login-box {
       background: #111;
       padding: 30px;
       border-radius: 12px;
       width: 320px;
-      margin: 0 auto;
       border: 2px solid var(--primary);
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
+    .login-box h3 { margin-bottom: 10px; }
     .login-box input {
       width: 100%;
       padding: 12px;
       margin-top: 10px;
       border-radius: 8px;
       border: none;
+      outline: none;
     }
     .login-box button {
       width: 100%;
@@ -77,18 +67,46 @@
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
+      color: #000;
     }
 
+    /* LOADING SCREEN SHOWCASE */
+    .loader-section { padding: 60px 40px; }
+    .loader-showcase {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 20px 0;
+    }
+    .loader-demo {
+      min-width: 220px;
+      height: 180px;
+      background: #111;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--primary);
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .loader-demo:hover { transform: scale(1.05); }
+
     /* DEMO ZONE */
+    .demo-zone-section { padding: 60px 40px; }
     .demo-zone {
       background: #111;
       padding: 40px;
       border-radius: 12px;
       border: 2px solid var(--primary);
       text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
 
-    /* THEME SELECTOR */
+    /* THEME SWITCHER */
+    .theme-section { padding: 60px 40px; }
     .theme-selector {
       display: flex;
       gap: 15px;
@@ -103,19 +121,120 @@
       background: #1a1a1a;
       color: var(--text);
       transition: 0.3s;
+      font-size: 0.95rem;
     }
     .theme-btn:hover {
       background: var(--primary);
-      color: black;
+      color: #000;
+    }
+
+    /* LOADER PREVIEW MODAL */
+    #loader-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100000;
+      flex-direction: column;
+      color: #fff;
+    }
+    #loader-modal .modal-inner {
+      background: #111;
+      padding: 30px;
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+      min-width: 260px;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    #loader-modal button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background: var(--primary);
+      cursor: pointer;
+      font-weight: bold;
+      color: #000;
+    }
+
+    /* INDIVIDUAL LOADER STYLES */
+    .loader-ring-demo {
+      width: 70px;
+      height: 70px;
+      border: 6px solid #333;
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    .loader-bars-demo {
+      display: flex;
+      gap: 6px;
+    }
+    .loader-bars-demo span {
+      width: 8px;
+      height: 40px;
+      background: var(--primary);
+      animation: bars 0.8s infinite ease-in-out;
+    }
+    .loader-bars-demo span:nth-child(2) { animation-delay: 0.1s; }
+    .loader-bars-demo span:nth-child(3) { animation-delay: 0.2s; }
+    .loader-bars-demo span:nth-child(4) { animation-delay: 0.3s; }
+
+    .loader-dots-demo {
+      display: flex;
+      gap: 10px;
+    }
+    .loader-dots-demo span {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: dots 0.8s infinite ease-in-out;
+    }
+    .loader-dots-demo span:nth-child(2) { animation-delay: 0.1s; }
+    .loader-dots-demo span:nth-child(3) { animation-delay: 0.2s; }
+
+    .loader-matrix-demo {
+      font-family: monospace;
+      color: var(--primary);
+      font-size: 1.2rem;
+      animation: matrix 1s infinite alternate;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes bars {
+      0%, 100% { transform: scaleY(0.4); opacity: 0.5; }
+      50% { transform: scaleY(1); opacity: 1; }
+    }
+    @keyframes dots {
+      0%, 100% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(-8px); opacity: 1; }
+    }
+    @keyframes matrix {
+      0% { opacity: 0.3; }
+      100% { opacity: 1; }
     }
   </style>
 </head>
 
 <body>
 
+<!-- CUSTOM CURSOR -->
 <div id="cursor" class="cursor"></div>
-<div id="loader"><div class="loader-ring"></div></div>
 
+<!-- GLOBAL LOADER (page load) -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <p style="margin-top:20px;">Crafting your cinematic experience...</p>
+</div>
+
+<!-- NAV -->
 <nav>
   <h3>Clayvonte Web Studios</h3>
   <div>
@@ -130,45 +249,54 @@
 <!-- HERO -->
 <section class="hero">
   <h1>Cinematic Web Experiences</h1>
-  <p>Loading screens, animations, dashboards, themes, and real tech — all showcased live.</p>
+  <p>Loading screens, themes, dashboards, microcontrollers, and custom integrations — all built to make your business feel bigger than it is.</p>
 </section>
 
 <!-- LOGIN -->
-<section>
-  <h2>Client Login</h2>
+<section class="login-section">
   <div class="login-box">
+    <h3>Client Login</h3>
+    <p style="font-size:0.9rem; opacity:0.8;">Log in to view your project dashboards and live builds.</p>
     <input type="text" placeholder="Email">
     <input type="password" placeholder="Password">
-    <button onclick="alert('Demo only — real login coming soon')">Login</button>
+    <button onclick="alert('Demo login — real client portal available on request.')">Login</button>
   </div>
 </section>
 
 <!-- LOADING SCREEN SHOWCASE -->
-<section>
+<section class="loader-section">
   <h2>Loading Screen Showcase</h2>
-  <p>Click any loading screen to preview it live.</p>
+  <p style="opacity:0.8; margin-top:10px;">Click any loader to see it full-screen — this is the energy your users feel before the site even loads.</p>
 
   <div class="loader-showcase">
-    <div class="loader-demo" onclick="previewLoader('ring')">Ring Loader</div>
-    <div class="loader-demo" onclick="previewLoader('bars')">Bars Loader</div>
-    <div class="loader-demo" onclick="previewLoader('dots')">Dots Loader</div>
-    <div class="loader-demo" onclick="previewLoader('matrix')">Matrix Loader</div>
+    <div class="loader-demo" onclick="openLoaderModal('ring')">
+      Ring Loader<br><small>Clean, premium, cinematic</small>
+    </div>
+    <div class="loader-demo" onclick="openLoaderModal('bars')">
+      Bars Loader<br><small>Tech, data, analytics vibes</small>
+    </div>
+    <div class="loader-demo" onclick="openLoaderModal('dots')">
+      Dots Loader<br><small>Playful, friendly, modern</small>
+    </div>
+    <div class="loader-demo" onclick="openLoaderModal('matrix')">
+      Matrix Loader<br><small>Hacker, cyber, sci‑fi</small>
+    </div>
   </div>
 </section>
 
 <!-- DEMO ZONE -->
-<section>
+<section class="demo-zone-section">
   <h2>Live Demo Zone</h2>
   <div class="demo-zone">
-    <p>Move your mouse. Click. Hover. Watch the magic.</p>
-    <p>Floating bubbles, custom cursor, confetti, animations — all active.</p>
+    <p>Move your mouse. Click. Scroll. This zone is wired with the same cursor, bubbles, and motion systems we can put on your site.</p>
+    <p style="margin-top:10px; opacity:0.8;">We can also trigger confetti, alerts, and micro‑animations when users buy, book, or submit forms.</p>
   </div>
 </section>
 
 <!-- THEME SWITCHER -->
-<section>
+<section class="theme-section">
   <h2>Try Themes Live</h2>
-  <p>Click a theme to instantly change the entire site.</p>
+  <p style="opacity:0.8; margin-top:10px;">Click a theme — the whole site changes. This is how fast we can re‑skin your brand.</p>
 
   <div class="theme-selector">
     <div class="theme-btn" onclick="setTheme('theme-bumblebee')">🐝 Bumble Bee</div>
@@ -179,17 +307,84 @@
   </div>
 </section>
 
+<!-- LOADER PREVIEW MODAL -->
+<div id="loader-modal">
+  <div class="modal-inner" id="loader-modal-inner">
+    <!-- Loader content injected by JS -->
+  </div>
+  <button onclick="closeLoaderModal()">Close</button>
+</div>
+
 <script src="app.js"></script>
 
 <script>
-/* THEME SWITCHER */
+/* THEME SWITCHER + CONFETTI */
 function setTheme(theme) {
   document.body.className = theme;
+  fireConfetti();
 }
 
-/* LOADER PREVIEW */
-function previewLoader(type) {
-  alert("This will show the " + type + " loader in a real modal in the next version.");
+/* SIMPLE CONFETTI BURST */
+function fireConfetti() {
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement('div');
+    c.style.position = 'fixed';
+    c.style.width = '8px';
+    c.style.height = '14px';
+    c.style.background = ['#ffd700','#ff4b4b','#4bff7b','#4bb8ff','#ffffff'][Math.floor(Math.random()*5)];
+    c.style.left = Math.random()*100 + 'vw';
+    c.style.top = '-20px';
+    c.style.opacity = '0.9';
+    c.style.zIndex = 99999;
+    c.style.transform = 'rotate(' + (Math.random()*360) + 'deg)';
+    const fall = 1500 + Math.random()*1000;
+    c.style.transition = 'transform '+fall+'ms linear, top '+fall+'ms linear, opacity '+fall+'ms linear';
+    document.body.appendChild(c);
+    setTimeout(() => {
+      c.style.top = '110vh';
+      c.style.transform += ' translateY(100vh)';
+      c.style.opacity = '0';
+    }, 10);
+    setTimeout(() => c.remove(), fall+500);
+  }
+}
+
+/* LOADER MODAL LOGIC */
+function openLoaderModal(type) {
+  const modal = document.getElementById('loader-modal');
+  const inner = document.getElementById('loader-modal-inner');
+  inner.innerHTML = ''; // clear previous
+
+  let loaderEl;
+  if (type === 'ring') {
+    loaderEl = document.createElement('div');
+    loaderEl.className = 'loader-ring-demo';
+  } else if (type === 'bars') {
+    loaderEl = document.createElement('div');
+    loaderEl.className = 'loader-bars-demo';
+    for (let i = 0; i < 4; i++) {
+      const bar = document.createElement('span');
+      loaderEl.appendChild(bar);
+    }
+  } else if (type === 'dots') {
+    loaderEl = document.createElement('div');
+    loaderEl.className = 'loader-dots-demo';
+    for (let i = 0; i < 3; i++) {
+      const dot = document.createElement('span');
+      loaderEl.appendChild(dot);
+    }
+  } else if (type === 'matrix') {
+    loaderEl = document.createElement('div');
+    loaderEl.className = 'loader-matrix-demo';
+    loaderEl.textContent = '0101011010101010';
+  }
+
+  inner.appendChild(loaderEl);
+  modal.style.display = 'flex';
+}
+
+function closeLoaderModal() {
+  document.getElementById('loader-modal').style.display = 'none';
 }
 </script>
 
