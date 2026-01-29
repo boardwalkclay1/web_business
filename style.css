@@ -1,0 +1,120 @@
+/* GLOBAL RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0d0d0d;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+nav {
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+}
+nav a:hover { color: #ffd700; }
+
+/* HERO */
+.hero {
+  padding: 120px 40px;
+  text-align: center;
+}
+.hero h1 { font-size: 3.5rem; }
+.hero p { margin-top: 20px; font-size: 1.3rem; opacity: 0.8; }
+
+/* SECTIONS */
+section { padding: 80px 40px; }
+h2 { font-size: 2.2rem; margin-bottom: 20px; }
+
+/* CARDS */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #ffd700;
+}
+
+/* CONTACT */
+.contact-box {
+  background: #111;
+  padding: 40px;
+  border-radius: 12px;
+}
+.contact-box a {
+  color: #ffd700;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffd700;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 0.1s ease-out;
+  z-index: 9999;
+}
+
+/* LOADER */
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 99999;
+}
+.loader-ring {
+  width: 80px;
+  height: 80px;
+  border: 6px solid #333;
+  border-top-color: #ffd700;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* BUBBLES */
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  width: 20px;
+  height: 20px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  animation: rise 8s infinite ease-in;
+}
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-1200px) scale(1.5); opacity: 0; }
+}
