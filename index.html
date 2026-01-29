@@ -2,9 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Clayvonte Web Studios</title>
+  <title>Clayvonte Web Studios — Cinematic Web Experiences</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* THEME COLORS */
+    :root {
+      --primary: #ffd700;
+      --background: #0d0d0d;
+      --text: white;
+    }
+    body.theme-bumblebee { --primary:#fce903; --background:#000; --text:#000; }
+    body.theme-blackwhite { --primary:#fff; --background:#000; --text:#fff; }
+    body.theme-redblack { --primary:#8b0000; --background:#000; --text:#fff; }
+    body.theme-greenbrown { --primary:#2e4d28; --background:#1a1a1a; --text:#d2b48c; }
+    body.theme-orangewhite { --primary:#ffa500; --background:#fff; --text:#000; }
+
+    /* HERO CINEMATIC */
+    .hero {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--background)),
+                  url('https://images.unsplash.com/photo-1527443224154-9f7aa53a6f5c?auto=format&fit=crop&w=1400&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 160px 40px;
+      text-align: center;
+      color: var(--text);
+    }
+    .hero h1 { font-size: 4rem; color: var(--primary); }
+    .hero p { font-size: 1.4rem; opacity: 0.9; }
+
+    /* LOADING SCREEN SHOWCASE */
+    .loader-showcase {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 20px 0;
+    }
+    .loader-demo {
+      min-width: 200px;
+      height: 200px;
+      background: #111;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--primary);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .loader-demo:hover { transform: scale(1.05); }
+
+    /* LOGIN BOX */
+    .login-box {
+      background: #111;
+      padding: 30px;
+      border-radius: 12px;
+      width: 320px;
+      margin: 0 auto;
+      border: 2px solid var(--primary);
+    }
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background: var(--primary);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* DEMO ZONE */
+    .demo-zone {
+      background: #111;
+      padding: 40px;
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+      text-align: center;
+    }
+
+    /* THEME SELECTOR */
+    .theme-selector {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .theme-btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 2px solid var(--primary);
+      cursor: pointer;
+      background: #1a1a1a;
+      color: var(--text);
+      transition: 0.3s;
+    }
+    .theme-btn:hover {
+      background: var(--primary);
+      color: black;
+    }
+  </style>
 </head>
+
 <body>
 
 <div id="cursor" class="cursor"></div>
@@ -21,23 +127,71 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <h1>Cinematic Websites & Custom Tech Solutions</h1>
-  <p>We build websites, dashboards, automations, microcontroller systems, and custom integrations that transform businesses.</p>
+  <h1>Cinematic Web Experiences</h1>
+  <p>Loading screens, animations, dashboards, themes, and real tech — all showcased live.</p>
 </section>
 
+<!-- LOGIN -->
 <section>
-  <h2>What Makes Us Different</h2>
-  <div class="card-grid">
-    <div class="card">Cinematic loading screens</div>
-    <div class="card">Custom animated cursors</div>
-    <div class="card">Interactive floating bubbles</div>
-    <div class="card">Secret dashboards</div>
-    <div class="card">CRM integration</div>
-    <div class="card">Theme leasing system</div>
+  <h2>Client Login</h2>
+  <div class="login-box">
+    <input type="text" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="alert('Demo only — real login coming soon')">Login</button>
+  </div>
+</section>
+
+<!-- LOADING SCREEN SHOWCASE -->
+<section>
+  <h2>Loading Screen Showcase</h2>
+  <p>Click any loading screen to preview it live.</p>
+
+  <div class="loader-showcase">
+    <div class="loader-demo" onclick="previewLoader('ring')">Ring Loader</div>
+    <div class="loader-demo" onclick="previewLoader('bars')">Bars Loader</div>
+    <div class="loader-demo" onclick="previewLoader('dots')">Dots Loader</div>
+    <div class="loader-demo" onclick="previewLoader('matrix')">Matrix Loader</div>
+  </div>
+</section>
+
+<!-- DEMO ZONE -->
+<section>
+  <h2>Live Demo Zone</h2>
+  <div class="demo-zone">
+    <p>Move your mouse. Click. Hover. Watch the magic.</p>
+    <p>Floating bubbles, custom cursor, confetti, animations — all active.</p>
+  </div>
+</section>
+
+<!-- THEME SWITCHER -->
+<section>
+  <h2>Try Themes Live</h2>
+  <p>Click a theme to instantly change the entire site.</p>
+
+  <div class="theme-selector">
+    <div class="theme-btn" onclick="setTheme('theme-bumblebee')">🐝 Bumble Bee</div>
+    <div class="theme-btn" onclick="setTheme('theme-blackwhite')">⚫ Black & White</div>
+    <div class="theme-btn" onclick="setTheme('theme-redblack')">❤️ Red & Black</div>
+    <div class="theme-btn" onclick="setTheme('theme-greenbrown')">🌿 Green & Brown</div>
+    <div class="theme-btn" onclick="setTheme('theme-orangewhite')">🟠 Orange & White</div>
   </div>
 </section>
 
 <script src="app.js"></script>
+
+<script>
+/* THEME SWITCHER */
+function setTheme(theme) {
+  document.body.className = theme;
+}
+
+/* LOADER PREVIEW */
+function previewLoader(type) {
+  alert("This will show the " + type + " loader in a real modal in the next version.");
+}
+</script>
+
 </body>
 </html>
