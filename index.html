@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clayvonte Web Studios — Cinematic Web Experiences</title>
+
+<style>
+/* ---------------------------------------------------
+   GLOBAL RESET + BASE
+--------------------------------------------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0d0d0d;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* ---------------------------------------------------
+   CUSTOM CURSOR
+--------------------------------------------------- */
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffd700;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 0.1s ease-out;
+  z-index: 9999;
+}
+
+/* ---------------------------------------------------
+   LOADING SCREEN
+--------------------------------------------------- */
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 99999;
+}
+.loader-ring {
+  width: 80px;
+  height: 80px;
+  border: 6px solid #333;
+  border-top-color: #ffd700;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------------------------------------------------
+   FLOATING BUBBLES
+--------------------------------------------------- */
+.bubble {
+  position: absolute;
+  bottom: -50px;
+  width: 20px;
+  height: 20px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  animation: rise 8s infinite ease-in;
+}
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-1200px) scale(1.5); opacity: 0; }
+}
+
+/* ---------------------------------------------------
+   HERO SECTION
+--------------------------------------------------- */
+.hero {
+  padding: 120px 40px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+.hero p {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  opacity: 0.8;
+}
+
+/* ---------------------------------------------------
+   THEMES SECTION
+--------------------------------------------------- */
+.themes {
+  padding: 80px 40px;
+}
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.theme-card {
+  padding: 20px;
+  border-radius: 12px;
+  background: #1a1a1a;
+  border: 2px solid transparent;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.theme-card:hover {
+  transform: translateY(-5px);
+  border-color: #ffd700;
+}
+
+/* ---------------------------------------------------
+   BUSINESS REASONS SECTION
+--------------------------------------------------- */
+.reasons {
+  padding: 80px 40px;
+}
+.reasons ul {
+  margin-top: 20px;
+  line-height: 1.8;
+}
+
+/* ---------------------------------------------------
+   CONTACT SECTION
+--------------------------------------------------- */
+.contact {
+  padding: 80px 40px;
+  background: #111;
+}
+.contact a {
+  color: #ffd700;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------
+   SECRET DASHBOARD
+--------------------------------------------------- */
+#secret-dashboard {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.95);
+  padding: 40px;
+  z-index: 999999;
+}
+#secret-dashboard h2 {
+  margin-bottom: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <p style="margin-top:20px; font-size:1.2rem;">Crafting your cinematic experience...</p>
+</div>
+
+<!-- FLOATING BUBBLES -->
+<script>
+for (let i = 0; i < 25; i++) {
+  let b = document.createElement("div");
+  b.className = "bubble";
+  b.style.left = Math.random() * 100 + "vw";
+  b.style.animationDelay = Math.random() * 5 + "s";
+  b.style.animationDuration = 6 + Math.random() * 4 + "s";
+  document.body.appendChild(b);
+}
+</script>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Clayvonte Web Studios</h1>
+  <p>Where cinematic design, futuristic UI, and business‑ready systems collide.</p>
+</section>
+
+<!-- THEMES -->
+<section class="themes">
+  <h2>Choose Your Theme</h2>
+  <p>We lease themes, customize them, and build unlimited variations.</p>
+
+  <div class="theme-grid">
+    <div class="theme-card" style="background:#fce903; color:black;">🐝 Bumble Bee</div>
+    <div class="theme-card" style="background:#000; color:white;">⚫ Black & White</div>
+    <div class="theme-card" style="background:#8b0000; color:white;">❤️ Red & Black</div>
+    <div class="theme-card" style="background:#2e4d28; color:#d2b48c;">🌿 Green & Brown</div>
+    <div class="theme-card" style="background:#ffa500; color:white;">🟠 Orange & White</div>
+
+    <!-- Unlimited expansion -->
+    <div class="theme-card">Neon Cyberpunk</div>
+    <div class="theme-card">Luxury Gold</div>
+    <div class="theme-card">Earthy Minimal</div>
+    <div class="theme-card">Corporate Blue</div>
+    <div class="theme-card">Cosmic Purple</div>
+  </div>
+</section>
+
+<!-- BUSINESS REASONS -->
+<section class="reasons">
+  <h2>Why Every Business Needs a Website</h2>
+  <ul>
+    <li>24/7 digital storefront that never closes</li>
+    <li>Instant credibility and professional presence</li>
+    <li>Automated lead capture and CRM integration</li>
+    <li>Showcase services, pricing, and testimonials</li>
+    <li>Boost SEO and get discovered on Google</li>
+    <li>Sell products, book appointments, and automate workflows</li>
+    <li>Build trust with clean branding and consistent messaging</li>
+  </ul>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <h2>Contact Clayvonte Directly</h2>
+  <p>Email: <a href="mailto:boardwalclay1@gmail.com">boardwalclay1@gmail.com</a></p>
+  <p>Phone: <a href="tel:6786830570">678‑683‑0570</a></p>
+</section>
+
+<!-- SECRET DASHBOARD -->
+<div id="secret-dashboard">
+  <h2>Secret Admin Dashboard</h2>
+  <p>Welcome, Clayvonte. Your hidden tools go here.</p>
+</div>
+
+<script>
+/* ---------------------------------------------------
+   CUSTOM CURSOR
+--------------------------------------------------- */
+document.addEventListener("mousemove", e => {
+  const c = document.getElementById("cursor");
+  c.style.left = e.clientX + "px";
+  c.style.top = e.clientY + "px";
+});
+
+/* ---------------------------------------------------
+   LOADER
+--------------------------------------------------- */
+window.onload = () => {
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+  }, 1500);
+};
+
+/* ---------------------------------------------------
+   SECRET DASHBOARD (Konami Code)
+--------------------------------------------------- */
+let code = [];
+const secret = "38384040373937396665"; // up up down down left right left right B A
+document.addEventListener("keydown", e => {
+  code.push(e.keyCode);
+  if (code.join("") === secret) {
+    document.getElementById("secret-dashboard").style.display = "block";
+  }
+});
+</script>
+
+</body>
+</html>
